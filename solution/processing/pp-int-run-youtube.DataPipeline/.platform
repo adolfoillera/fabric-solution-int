@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "DataPipeline",
+    "displayName": "pp-int-run-youtube"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "4f2f62d4-3bc9-b6b9-4f79-911fbca69e3a"
+  }
+}
