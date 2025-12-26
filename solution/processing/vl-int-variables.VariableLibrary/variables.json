@@ -84,6 +84,12 @@
       "note": "",
       "type": "String",
       "value": "10b14a38-21aa-4574-865a-b35c455acfe2"
+    },
+    {
+      "name": "ADMIN_LH_NAME",
+      "note": "",
+      "type": "String",
+      "value": "lh_int_admin"
     }
   ]
 }
