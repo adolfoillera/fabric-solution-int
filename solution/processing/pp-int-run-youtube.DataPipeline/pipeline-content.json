@@ -15,6 +15,8 @@
             {
               "name": "RUN LH CREATE NOTEBOOK",
               "type": "TridentNotebook",
+              "state": "Inactive",
+              "onInactiveMarkAs": "Succeeded",
               "dependsOn": [],
               "policy": {
                 "timeout": "0.12:00:00",
@@ -26,6 +28,86 @@
               "typeProperties": {
                 "notebookId": {
                   "value": "@pipeline().libraryVariables.vlintvariables_LHCREATE_ALL_NOTEBOOK_ID",
+                  "type": "Expression"
+                },
+                "workspaceId": {
+                  "value": "@pipeline().libraryVariables.vlintvariables_PROCESSING_WORKSPACE_ID",
+                  "type": "Expression"
+                }
+              }
+            },
+            {
+              "name": "RUN LH CREATE NOTEBOOK_BRONZE",
+              "type": "TridentNotebook",
+              "dependsOn": [],
+              "policy": {
+                "timeout": "0.12:00:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureOutput": false,
+                "secureInput": false
+              },
+              "typeProperties": {
+                "notebookId": {
+                  "value": "@pipeline().libraryVariables.vlintvariables_LHCREATE_BRONZE_NOTEBOOK_ID",
+                  "type": "Expression"
+                },
+                "workspaceId": {
+                  "value": "@pipeline().libraryVariables.vlintvariables_PROCESSING_WORKSPACE_ID",
+                  "type": "Expression"
+                }
+              }
+            },
+            {
+              "name": "RUN LH CREATE NOTEBOOK_SILVER",
+              "type": "TridentNotebook",
+              "dependsOn": [
+                {
+                  "activity": "RUN LH CREATE NOTEBOOK_BRONZE",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                }
+              ],
+              "policy": {
+                "timeout": "0.12:00:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureOutput": false,
+                "secureInput": false
+              },
+              "typeProperties": {
+                "notebookId": {
+                  "value": "@pipeline().libraryVariables.vlintvariables_LHCREATE_SILVER_NOTEBOOK_ID",
+                  "type": "Expression"
+                },
+                "workspaceId": {
+                  "value": "@pipeline().libraryVariables.vlintvariables_PROCESSING_WORKSPACE_ID",
+                  "type": "Expression"
+                }
+              }
+            },
+            {
+              "name": "RUN LH CREATE NOTEBOOK_GOLD",
+              "type": "TridentNotebook",
+              "dependsOn": [
+                {
+                  "activity": "RUN LH CREATE NOTEBOOK_SILVER",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                }
+              ],
+              "policy": {
+                "timeout": "0.12:00:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureOutput": false,
+                "secureInput": false
+              },
+              "typeProperties": {
+                "notebookId": {
+                  "value": "@pipeline().libraryVariables.vlintvariables_LHCREATE_GOLD_NOTEBOOK_ID",
                   "type": "Expression"
                 },
                 "workspaceId": {
@@ -194,6 +276,21 @@
       "vlintvariables_PROCESSING_WORKSPACE_ID": {
         "type": "String",
         "variableName": "PROCESSING_WORKSPACE_ID",
+        "libraryName": "vl-int-variables"
+      },
+      "vlintvariables_LHCREATE_BRONZE_NOTEBOOK_ID": {
+        "type": "String",
+        "variableName": "LHCREATE_BRONZE_NOTEBOOK_ID",
+        "libraryName": "vl-int-variables"
+      },
+      "vlintvariables_LHCREATE_SILVER_NOTEBOOK_ID": {
+        "type": "String",
+        "variableName": "LHCREATE_SILVER_NOTEBOOK_ID",
+        "libraryName": "vl-int-variables"
+      },
+      "vlintvariables_LHCREATE_GOLD_NOTEBOOK_ID": {
+        "type": "String",
+        "variableName": "LHCREATE_GOLD_NOTEBOOK_ID",
         "libraryName": "vl-int-variables"
       }
     }
