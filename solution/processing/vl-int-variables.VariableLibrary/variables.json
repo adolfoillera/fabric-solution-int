@@ -66,6 +66,24 @@
       "note": "",
       "type": "String",
       "value": "fcfb19c3-bc32-4460-8247-de0fcb117423"
+    },
+    {
+      "name": "LHCREATE_BRONZE_NOTEBOOK_ID",
+      "note": "",
+      "type": "String",
+      "value": "bc383ef4-a69d-4995-8925-f683de04872f"
+    },
+    {
+      "name": "LHCREATE_SILVER_NOTEBOOK_ID",
+      "note": "",
+      "type": "String",
+      "value": "c2fa5c8f-028b-4ab0-b13f-d2485df30378"
+    },
+    {
+      "name": "LHCREATE_GOLD_NOTEBOOK_ID",
+      "note": "",
+      "type": "String",
+      "value": "10b14a38-21aa-4574-865a-b35c455acfe2"
     }
   ]
 }
