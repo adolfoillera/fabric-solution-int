@@ -15,8 +15,6 @@
             {
               "name": "RUN LH CREATE NOTEBOOK",
               "type": "TridentNotebook",
-              "state": "Inactive",
-              "onInactiveMarkAs": "Succeeded",
               "dependsOn": [],
               "policy": {
                 "timeout": "0.12:00:00",
@@ -39,6 +37,8 @@
             {
               "name": "RUN LH CREATE NOTEBOOK_BRONZE",
               "type": "TridentNotebook",
+              "state": "Inactive",
+              "onInactiveMarkAs": "Succeeded",
               "dependsOn": [],
               "policy": {
                 "timeout": "0.12:00:00",
@@ -61,6 +61,8 @@
             {
               "name": "RUN LH CREATE NOTEBOOK_SILVER",
               "type": "TridentNotebook",
+              "state": "Inactive",
+              "onInactiveMarkAs": "Succeeded",
               "dependsOn": [
                 {
                   "activity": "RUN LH CREATE NOTEBOOK_BRONZE",
@@ -90,6 +92,8 @@
             {
               "name": "RUN LH CREATE NOTEBOOK_GOLD",
               "type": "TridentNotebook",
+              "state": "Inactive",
+              "onInactiveMarkAs": "Succeeded",
               "dependsOn": [
                 {
                   "activity": "RUN LH CREATE NOTEBOOK_SILVER",
@@ -238,14 +242,9 @@
       {
         "name": "Run 4 Validation Notebook",
         "type": "TridentNotebook",
-        "dependsOn": [
-          {
-            "activity": "Run 3 Model Notebook",
-            "dependencyConditions": [
-              "Succeeded"
-            ]
-          }
-        ],
+        "state": "Inactive",
+        "onInactiveMarkAs": "Succeeded",
+        "dependsOn": [],
         "policy": {
           "timeout": "0.12:00:00",
           "retry": 0,

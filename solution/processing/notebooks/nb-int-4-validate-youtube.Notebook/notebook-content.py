@@ -148,6 +148,9 @@ VALIDATION_METADATA = [
     {"schema": "marketing", "table": "asset_stats", "validation_definition": "marketing_asset_stats_validation"}
 ]
 
+print(VALIDATION_METADATA)
+
+
 # METADATA ********************
 
 # META {
@@ -162,13 +165,13 @@ VALIDATION_METADATA = [
 # CELL ********************
 
 for item in VALIDATION_METADATA: 
-    print(f"Validating: {item['schema']}.{item['table']}")
+    print(f"Validating: {item['schema']}.{item['table']}.{item['validation_definition']}")
 
     # get the validation definition from the GX Context
     validation_def = context.validation_definitions.get(item["validation_definition"])
 
     # read the data into a Spark dataframe
-    df = get_df_from_path(gold_path, item["schema"], item["table"])
+    df = get_df_from_path(gold_path, item["schema"], item["table"], item["validation_definition"])
 
     # pass the DF into the validation definition 
     results = validation_def.run(batch_parameters={"dataframe": df})
@@ -176,6 +179,7 @@ for item in VALIDATION_METADATA:
     log_results(results, f"{admin_path}/Tables/quality/validation_results")
 
     print(f"100% Success? {results.success}")
+
 
 # METADATA ********************
 
