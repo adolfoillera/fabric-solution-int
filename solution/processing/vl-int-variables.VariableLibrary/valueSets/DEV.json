@@ -33,18 +33,6 @@
     {
       "name": "PROCESSING_WORKSPACE_ID",
       "value": "b62d849e-e9e5-4aad-afae-b27d634cbe29"
-    },
-    {
-      "name": "LHCREATE_BRONZE_NOTEBOOK_ID",
-      "value": "44a3c8dc-3006-462e-b53a-dbc0e2882457"
-    },
-    {
-      "name": "LHCREATE_SILVER_NOTEBOOK_ID",
-      "value": "1bdb207f-4baf-48e6-bcac-532f1f0b5cc6"
-    },
-    {
-      "name": "LHCREATE_GOLD_NOTEBOOK_ID",
-      "value": "338c95d3-3d13-4157-80f1-30c90f465161"
     }
   ]
 }

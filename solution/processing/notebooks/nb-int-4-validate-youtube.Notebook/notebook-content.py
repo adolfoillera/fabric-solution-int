@@ -164,14 +164,15 @@ print(VALIDATION_METADATA)
 
 # CELL ********************
 
+
 for item in VALIDATION_METADATA: 
-    print(f"Validating: {item['schema']}.{item['table']}.{item['validation_definition']}")
+    print(f"Validating: {item['schema']}.{item['table']}")
 
     # get the validation definition from the GX Context
     validation_def = context.validation_definitions.get(item["validation_definition"])
 
     # read the data into a Spark dataframe
-    df = get_df_from_path(gold_path, item["schema"], item["table"], item["validation_definition"])
+    df = get_df_from_path(gold_path, item["schema"], item["table"])
 
     # pass the DF into the validation definition 
     results = validation_def.run(batch_parameters={"dataframe": df})
@@ -179,6 +180,17 @@ for item in VALIDATION_METADATA:
     log_results(results, f"{admin_path}/Tables/quality/validation_results")
 
     print(f"100% Success? {results.success}")
+
+
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
 
 
 # METADATA ********************
