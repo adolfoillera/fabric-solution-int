@@ -148,6 +148,7 @@ def write_json_to_location(json_data, location, id):
 
     notebookutils.fs.put(abfs_path, json_string, overwrite=True)
 
+
 # METADATA ********************
 
 # META {
@@ -206,6 +207,17 @@ def get_secret_from_akv()-> str:
 
 api_key = get_secret_from_akv()
 
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+print(api_key)
 
 # METADATA ********************
 
